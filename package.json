@@ -1,0 +1,19 @@
+{
+  "name": "@inversion-of-control/electron-project",
+  "version": "0.0.1",
+  "description": "Tooling for compiling and testing an Electron application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inversion-of-control/electron-project.git"
+  },
+  "author": "John Gardiner <jwegardiner@gmail.com> (https://github.com/johngardiner)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inversion-of-control/electron-project/issues"
+  },
+  "homepage": "https://github.com/inversion-of-control/electron-project#readme"
+}
