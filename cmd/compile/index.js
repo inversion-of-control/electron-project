@@ -21,7 +21,8 @@ function compileDevelopmentDeleteCache() {
 }
 
 function onCleanDevelopmentDeleteCache(err, stdout, stderr) {
-    err !== null && cleanDevelopmentSetEnvironment()  
+    err === null && cleanDevelopmentSetEnvironment();  
+    err !== null && console.log("error: " + err.toString());
 }
 
 function compileDevelopmentSetEnvironment() {
@@ -29,14 +30,17 @@ function compileDevelopmentSetEnvironment() {
 }
 
 function onCompileDevelopmentSetEnvironment(err, stdout, stderr) {
-    err !== null && cleanDevelopmentSetEnvironment()  
+    err === null && cleanDevelopmentSetEnvironment();  
+    err !== null && console.log("error: " + err.toString());
 }
 
 function compileDevelopmentRunCompiler() {
     npmRun.exec('electron ' + pwd, {cwd: __dirname}, onCompileDevelopmentRunCompiler);
 }
 
-function onCompileDevelopmentRunCompiler(err, stdout, stderr) {}
+function onCompileDevelopmentRunCompiler(err, stdout, stderr) {
+    err !== null && console.log("error: " + err.toString());
+}
 
 // PRODUCTION
 
@@ -49,11 +53,14 @@ function compileProductionSetEnvironment() {
 }
 
 function onCompileProductionSetEnvironment(err, stdout, stderr) {
-    err !== null && compileProductionRunCompiler()  
+    err === null && compileProductionRunCompiler();  
+    err !== null && console.log("error: " + err.toString());
 }
 
 function compileProductionRunCompiler() {
     npmRun.exec('electron-compile --appDir ' + pwd + " " + electron_modules, {cwd: __dirname}, onCompileProductionRunCompiler);
 }
 
-function onCompileProductionRunCompiler(err, stdout, stderr) {}
+function onCompileProductionRunCompiler(err, stdout, stderr) {
+    err !== null && console.log("error: " + err.toString());
+}
