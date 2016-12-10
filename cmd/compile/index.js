@@ -1,5 +1,6 @@
-var npmRun = require('npm-run');
 var fs = require('fs');
+var npmRun = require('npm-run');
+var path = require('path');
 var pwd, cache, electron_modules;
 
 module.exports = function compile(cwd, mode) {
