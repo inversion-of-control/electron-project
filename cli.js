@@ -6,11 +6,11 @@
  * ============
 **/
 
-var process = require('yargs');
-var cwd = process.cwd();
+var prc = require('yargs');
 var cmd = require('./cmd');
+var cwd = process.cwd();
 
-process.usage('$0 <cmd> [args]')
+prc.usage('$0 <cmd> [args]')
        .command('assemble [module]', 
                 'links dependencies to the electron_modules directory', 
                 { module: {default: 'all'}}, 
