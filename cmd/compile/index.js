@@ -21,7 +21,7 @@ function compileDevelopmentDeleteCache() {
 }
 
 function onCleanDevelopmentDeleteCache(err, stdout, stderr) {
-    err === null && cleanDevelopmentSetEnvironment();  
+    err === null && compileDevelopmentSetEnvironment();  
     err !== null && console.log("error: " + err.toString());
 }
 
@@ -30,7 +30,7 @@ function compileDevelopmentSetEnvironment() {
 }
 
 function onCompileDevelopmentSetEnvironment(err, stdout, stderr) {
-    err === null && cleanDevelopmentSetEnvironment();  
+    err === null && compileDevelopmentRunCompiler();  
     err !== null && console.log("error: " + err.toString());
 }
 
