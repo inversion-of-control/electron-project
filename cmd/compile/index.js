@@ -7,7 +7,7 @@ module.exports = function compile(cwd, mode) {
     pwd = cwd;
     cache = path.resolve( pwd, '.cache');
     electron_modules = path.resolve( pwd, 'electron_modules');
-    (mode == 'development') ? compileDevelopment() : compileProduction(); 
+    mode == 'development' ? compileDevelopment() : compileProduction(); 
 };
 
 // DEVELOPMENT
