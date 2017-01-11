@@ -22,7 +22,7 @@ prc.usage('$0 <cmd> [args]')
        .command('link [module]', 
                 'links dependencies to the electron_modules directory', 
                 { module: {default: 'all'}}, 
-                function (argv) {cmd.assemble(cwd, argv.module);})                
+                function (argv) {cmd.link(cwd, argv.module);})                
        .command('package [platform]', 
                 'packages project for the specified platform [win32,darwin,linux]', 
                 { platform: {default: 'win32'}}, 
