@@ -10,7 +10,7 @@ module.exports = function link(cwd, module) {
     package = path.resolve( pwd, 'package.json');
     node_modules = path.resolve( pwd, 'node_modules');
     electron_modules = path.resolve( pwd, 'electron_modules');
-     
+
     json.readFile(package, parsePackage);
 
     // 2. parse 'electron modules' entry from package.json
@@ -23,5 +23,8 @@ module.exports = function link(cwd, module) {
 };
 
 function parsePackage(err, obj){
+    var electron_modules = JSON.parse(obj, function(key,value){
+        
+    });
     console.dir(obj);
 }
