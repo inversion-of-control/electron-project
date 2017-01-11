@@ -2,7 +2,7 @@
 
 /**
  * ============
- * elctron-project CLI
+ * electron-project CLI
  * ============
 **/
 
@@ -11,10 +11,6 @@ var cmd = require('./cmd');
 var cwd = process.cwd();
 
 prc.usage('$0 <cmd> [args]')
-       .command('assemble [module]', 
-                'links dependencies to the electron_modules directory', 
-                { module: {default: 'all'}}, 
-                function (argv) {cmd.assemble(cwd, argv.module);})
        .command('clean [target]', 
                 'cleans the specified target', 
                 { target: {default: 'all'}}, 
@@ -23,6 +19,10 @@ prc.usage('$0 <cmd> [args]')
                 'compile project and generate file cache', 
                 { mode: {default: 'development'}}, 
                 function (argv) {cmd.compile(cwd, argv.mode);})
+       .command('link [module]', 
+                'links dependencies to the electron_modules directory', 
+                { module: {default: 'all'}}, 
+                function (argv) {cmd.assemble(cwd, argv.module);})                
        .command('package [platform]', 
                 'packages project for the specified platform [win32,darwin,linux]', 
                 { platform: {default: 'win32'}}, 

@@ -1,6 +1,6 @@
 {
   "name": "@inversion-of-control/electron-project",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Electron application tooling",
   "main": "cli.js",
   "bin": {
@@ -27,6 +27,7 @@
     "electron-compile": "5.1.2",
     "electron-compilers": "5.3.2",
     "electron-packager": "8.4.0",
+    "jsonfile": "2.4.0",
     "npm-run": "4.1.0",
     "npm-run-all": "3.1.2",
     "recursive-readdir": "2.1.0",
