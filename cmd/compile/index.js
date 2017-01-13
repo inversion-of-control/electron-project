@@ -11,7 +11,6 @@ module.exports = function compile(cwd, mode) {
 };
 
 // DEVELOPMENT
-
 function compileDevelopment() {
     fs.existsSync(cache) ? compileDevelopmentDeleteCache() : compileDevelopmentSetEnvironment()   
 }
@@ -43,7 +42,6 @@ function onCompileDevelopmentRunCompiler(err, stdout, stderr) {
 }
 
 // PRODUCTION
-
 function compileProduction() {
     compileProductionSetEnvironment();
 }

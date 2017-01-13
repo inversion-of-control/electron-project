@@ -1,32 +1,68 @@
-var fs = require('fs');
-var npmRun = require('npm-run');
-var path = require('path');
+var fs = require('fs')
+var npmRun = require('npm-run')
+var path = require('path')
 var json = require('jsonfile')
+var progress = require('progress')
 var pwd, 
-    package, 
+    package,
+    processing, 
+    modules,
+    modules_keys,    
     node_modules, 
-    electron_modules;
+    electron_modules,
+    progress_indicator,
+    module_indicator,
+    symlink_results,
+    symlink_faults,
+    symlink
 
-module.exports = function link(cwd, module) {
-    pwd = cwd;
-    package = path.resolve( pwd, 'package.json');
-    node_modules = path.resolve( pwd, 'node_modules');
-    electron_modules = path.resolve( pwd, 'electron_modules');
+module.exports = link = (cwd, module) => {
+    pwd = cwd
+    package = path.resolve(pwd, 'package.json')
+    node_modules = path.resolve(pwd, 'node_modules')
+    electron_modules = path.resolve(pwd, 'electron_modules')
+    json.readFile(package, parser)
+}
 
-    json.readFile(package, parser);
+parser = (error, object) => {
+    modules = object.electron_modules
+    modules_keys = Object.keys(modules)
+    module_indicator = new progress('  linking: :module', { total: modules_keys.length, width: 20, clear: true })
+    progress_indicator = new progress('  progress: [:bar] :percent :etas', { total: modules_keys.length, width: 20 })
+    modules_keys.map(parse)
+}
 
-    // 2. parse 'electron modules' entry from package.json
-    // 3. map RELEASE ('node_modules') locations and SNAPSHOT (non 'node_modules' filesystem) locations to target keys/locations 
-    // 3. if module==='all' (DEFAULT FOR NOW)
-        // for each key  
-        // query if key's symlink exists in electron_modules (with correct location)
-        // if !module_exists, write symlink for key and target_location(+ console output)
-        // else if module_exists && current_location!==target_location, write symlink for key and target_location(+ console output)
-};
+parse = (module, index) => {
+    processing = module;  
+    symlink = path.resolve(electron_modules, processing)
+    isSymbolicLink ? tick(processing) : tick(processing)
+}
 
-function parser(error, object){
-    electron_modules = object.electron_modules;
-    Object.keys(electron_modules).map(function(module, index) {
-        console.log( "processing... " + electron_modules[module] );
-    });
+create = () => {
+    fs.symlink(srcpath, dstpath, callback)
+}
+
+destroy = () => {
+    
+}
+
+tick = module => {
+    module_indicator.tick({'module': modules[module]})
+    progress_indicator.tick()
+    progress_indicator.complete && onComplete();
+}
+
+onComplete = () => {
+    
+}
+
+isSymbolicLink = path => {
+	try {
+		const stats = fs.lstatSync(path);
+		return stats.isSymbolicLink();
+	} 
+    catch (error) {
+		if (error.code === 'ENOENT') return false;
+		throw error;
+	}
 }
